@@ -1,2 +1,7 @@
+# Cocoapod
 Client/Pods/*
 Client/Podfile.lock
+
+# Go
+Server/server
+Server/server.exe
