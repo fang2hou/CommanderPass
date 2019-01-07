@@ -1,0 +1,12 @@
+body {
+    padding: 50px;
+}
+
+.author {
+    display: inline-flex;
+    margin-left: 10px;
+}
+
+.authorText {
+    margin-left: 5px;
+}

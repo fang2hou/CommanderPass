@@ -1,0 +1,8 @@
+platform :osx, '10.12'
+
+target 'ArduinoEncryptionLock' do
+  use_frameworks!
+
+  pod 'ORSSerialPort'
+  pod 'Alamofire'
+end
