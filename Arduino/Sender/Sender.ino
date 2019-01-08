@@ -1,3 +1,5 @@
+#include <SoftwareSerial.h>
+SoftwareSerial XBee(2, 3);
 const String MODEL = "AEL0106";
 
 String bufferString;
@@ -6,6 +8,7 @@ String pass;
 
 void setup() {
   Serial.begin(9600);
+  XBee.begin(9600);
 }
 
 void loop() {
@@ -13,48 +16,41 @@ void loop() {
     bufferString = Serial.readStringUntil('\n');
     handleData();
   }
+  if (XBee.available()) {
+    bufferString = XBee.readStringUntil('\n');
+    handleData();
+  }
 }
 
 void handleData() {
+  // Client Command
   if (bufferString.startsWith("C")) {
-    // Client Command
     if (bufferString == "CWaitSender") {
-      // Sender Arduino is ready!
       Serial.print("ASenderReady\n");
     } else if (bufferString == "CWaitUser") {
-      // Xbee.print("AWaitUser\n");
-      
-      // DEBUG:
-      Serial.print("AUserReadyViaSender\n");
+      XBee.print("AWaitUser\n");
     } else if (bufferString.startsWith("C#token#")) {
       Serial.print("ATokenGot\n");
-      
-      // Xbee.print("AStartInput\n");
-      
       const int leftSide = String("C#token#").length();
       token = bufferString.substring(leftSide);
-      
-      // DEBUG:
-      pass = "1234";
-      encrypt();
+      XBee.print("AStartInput\n");
     }
   }
-  
+
+  // Arduino Command
   if (bufferString.startsWith("A")) {
-    // Arduino Command
     if (bufferString == "AUserReady") {
       Serial.print("AUserReadyViaSender\n");
     } else if (bufferString.startsWith("A#pass#")) {
-      // Xbee.print("APassGot\n");
-      pass = "1234";
+      XBee.print("APassGot\n");
+      const int leftSide = String("A#pass#").length();
+      pass = bufferString.substring(leftSide);
       encrypt();
     }
   }
 }
 
 void encrypt() {
-  delay(1000);
-
   Serial.print("A#auth#" + MODEL + token + pass);
   Serial.print("\n");
 }
