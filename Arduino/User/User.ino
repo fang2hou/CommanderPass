@@ -65,7 +65,9 @@ Adafruit_TFTLCD tft;
 SoftwareSerial XBee(2, 3);
 
 bool isInputMode = false;
+bool isAuthFailed = false;
 unsigned long lastTouchedTime = 0;
+
 
 String bufferString = "";
 String passwordString = "";
@@ -94,24 +96,22 @@ void setup(){
 
   // UI Rendering
   tft.fillScreen(WHITE);
-  renderButtonsInRandom();
+  renderMessage("Waiting...", RED);
   renderTitle();
 }
 
 void loop() {
-  if (isInputMode) {
-    detectTouch();
+  if (isAuthFailed) {
     
+  } else if (isInputMode) {
+    detectTouch();
     if (passwordString.length() >= 4) {
-      Serial.print("A#pass#" + passwordString + "\n");
       XBee.print("A#pass#" + passwordString + "\n");
       isInputMode = false;
     }
-    
   } else if (XBee.available()) {
     bufferString = XBee.readStringUntil('\n');
     handleData();
-    
   }
 }
 
@@ -121,12 +121,27 @@ void handleData() {
       XBee.print("AUserReady\n");
     } else if (bufferString == "AStartInput") {
       isInputMode = true;
+      tft.fillScreen(WHITE);
+      renderButtonsInRandom();
+      renderTitle();
     } else if (bufferString == "APassGot") {
-      XBee.print("over\n");
+        tft.fillScreen(WHITE);
+        renderMessage("Sending...", BLACK);
+        renderTitle();
+    } else if (bufferString == "AAuthSuccess") {
+        tft.fillScreen(WHITE);
+        renderMessage(" Success!", BLUE);
+        renderTitle();
+    } else if (bufferString == "AAuthFailed") {
+        tft.fillScreen(WHITE);
+        isAuthFailed = true;
+        renderMessage("  Wrong!", RED);
+        renderRetryButton();
+        renderTitle();
     }
   }
 }
-
+  
 void detectTouch() {
   digitalWrite(13, HIGH);
   TSPoint p = ts.getPoint();
@@ -175,6 +190,14 @@ void saveInputedNumber(int number) {
     }
 }
 
+void renderRetryButton() {
+  tft.fillRect(40, 120, 160, 40, BLACK);
+  tft.setCursor(40, 120);
+  tft.setTextSize(5);
+  tft.setTextColor(WHITE);
+  tft.println("Retry");
+}
+
 void renderButtonsInRandom() {
   // Initialized button index.
   for (int i = 0; i < 9; ++i) {
@@ -221,7 +244,7 @@ void renderButton(position pos) {
 }
 
 void renderTitle() {
-  // Title rendering
+  // Text - CommanderPass
   tft.setTextSize(2);
   tft.setCursor(43, 261);
   tft.setTextColor(BLACK);
@@ -243,9 +266,16 @@ void renderTitle() {
   tft.fillRect(42, 280, 155, 1, RED);
   tft.fillRect(42, 283, 155, 2, RED);
 
-  // Ritsumeikan University
+  // Text - Ritsumeikan University
   tft.setCursor(55, 290);
   tft.setTextColor(RED);
   tft.setTextSize(1);
   tft.println("Ritsumeikan University");
+}
+
+void renderMessage(String message, uint16_t color) {
+  tft.setCursor(60, 60);
+  tft.setTextSize(2);
+  tft.setTextColor(color);
+  tft.println(message);
 }
