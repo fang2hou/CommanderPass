@@ -1,6 +1,6 @@
 //
 //  AppDelegate.swift
-//  ArduinoEncryptionLock
+//  CommanderPass
 //
 //  Created by Zhou Fang on 2019/01/05.
 //  Copyright © 2019 Zhou Fang. All rights reserved.

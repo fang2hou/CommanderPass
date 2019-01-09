@@ -67,9 +67,9 @@ func (a *aelAPI) auth(w http.ResponseWriter, r *http.Request) {
 	}
 
 	authKey := r.Form["key"][0]
-	model := authKey[0:7]
-	sessionUUID := authKey[7:23]
-	enteredPass := authKey[23:27]
+	model := authKey[0:5]
+	sessionUUID := authKey[5:21]
+	enteredPass := authKey[21:25]
 
 	username := a.usernameMap[sessionUUID]
 

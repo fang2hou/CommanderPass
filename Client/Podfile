@@ -1,6 +1,6 @@
 platform :osx, '10.12'
 
-target 'ArduinoEncryptionLock' do
+target 'CommanderPass' do
   use_frameworks!
 
   pod 'ORSSerialPort'

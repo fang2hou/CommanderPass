@@ -1,6 +1,6 @@
 #include <SoftwareSerial.h>
 SoftwareSerial XBee(2, 3);
-const String MODEL = "AEL0106";
+const String MODEL = "CP001";
 
 String bufferString;
 String token;
@@ -34,6 +34,10 @@ void handleData() {
       const int leftSide = String("C#token#").length();
       token = bufferString.substring(leftSide);
       XBee.print("AStartInput\n");
+    } else if (bufferString == "CAuthSuccess") {
+      XBee.print("AAuthSuccess\n");
+    } else if (bufferString == "CAuthFailed") {
+      XBee.print("AAuthFailed\n");
     }
   }
 
@@ -45,12 +49,12 @@ void handleData() {
       XBee.print("APassGot\n");
       const int leftSide = String("A#pass#").length();
       pass = bufferString.substring(leftSide);
-      encrypt();
+      encryptAndSendBack();
     }
   }
 }
 
-void encrypt() {
+void encryptAndSendBack() {
   Serial.print("A#auth#" + MODEL + token + pass);
   Serial.print("\n");
 }

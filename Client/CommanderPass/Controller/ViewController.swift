@@ -1,6 +1,6 @@
 //
 //  ViewController.swift
-//  ArduinoEncryptionLock
+//  CommanderPass
 //
 //  Created by Zhou Fang on 2019/01/05.
 //  Copyright © 2019 Zhou Fang. All rights reserved.
@@ -229,7 +229,7 @@ class ViewController: NSViewController, ORSSerialPortDelegate {
             updateStatusInfo("✅ 👮‍♀️ Got token successfully, sending it to Arduino.")
             serialPort?.send(withData: "C#token#\(userToken)\n")
         case .tokenSent:
-            updateStatusInfo("✅ ➡️ Token sent to Arduino.")
+            updateStatusInfo("✅ ➡️ Token sent to Arduino. Waiting for input.")
         case .authKeyGot:
             updateStatusInfo("✅ ⬅️ Got authkey from Arduino. Prepared to send.")
             serialPort?.send(withData: "CAuthKeyGot\n")
@@ -238,8 +238,10 @@ class ViewController: NSViewController, ORSSerialPortDelegate {
             }
         case .authKeyVerified:
             updateStatusInfo("✅ 🔓 Authkey has been verified, please check the web page.")
+            serialPort?.send(withData: "CAuthSuccess\n")
         case .authKeyError:
-            updateStatusInfo("❌ 🔒 Your password is not correct.")
+            updateStatusInfo("❌ 🔒 Your password is not correct please retry.")
+            serialPort?.send(withData: "CAuthFailed\n")
         }
     }
 }
