@@ -103,7 +103,7 @@ func (a *aelAPI) reg(w http.ResponseWriter, r *http.Request) {
 
 func main() {
 	exAPI := aelAPI{
-		sourceLink:  "https://github.com/fang2hou/EasyGA/archive/v0.4.0.zip",
+		sourceLink:  "http://ipv4.download.thinkbroadband.com/5MB.zip",
 		uuidMap:     make(map[string]string),
 		usernameMap: make(map[string]string),
 		status:      make(map[string]bool),

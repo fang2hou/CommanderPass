@@ -13,34 +13,54 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Rits Cloud Driver</title>
 </head>
+<header>
+    <div class="container beta-alert" id="rc-alert">
+        <div class="alert alert-primary" role="alert" v-if="isShown">
+            <h4 class="alert-heading">Welcome to RitsCloud!</h4>
+            <p>This is an example for CommanderPass online use.</p>
+            <hr>
+            <div class="text-right">
+                <button type="button" class="btn btn-outline-primary btn-sm" v-on:click="closeSelf">Ok, I got it.</button>
+            </div>
+        </div>
+    </div>
+</header>
 
 <body>
-    <div class="container main-body">
+    <div class="container main-body" id="rc-main-container">
         <div class="logo">
             <image width="408" height="138" src="src/logo.png"></image>
         </div>
-        <br>
-
         <div class="search-box">
-            <div class="input-group mb-3 col-md-8 offset-md-2">
-                <div class="input-group-prepend">
-                    <span class="input-group-text" id="basic-addon1">File Code</span>
-                </div>
-                <input type="text" class="form-control" placeholder="" aria-label="Username" aria-describedby="basic-addon1">
+            <div class="col-md-8 offset-md-2">
+                <input type="text" class="form-control" placeholder="" v-model="inputedFileName">
             </div>
         </div>
         <div class="search-buttons row justify-content-center">
-            <a href="#" class="btn-download btn btn-primary btn-lg" role="button" aria-pressed="true">Search file</a>
+            <button v-if="searchButton.isShown" class="btn-download btn btn-lg" v-bind:class="searchButton.status"
+                v-on:click="generateSession">{{
+                searchButton.text }}</button>&nbsp;&nbsp;
+            <a v-if="downloadButton.isShown" v-bind:href="downloadButton.path" class="btn-download btn btn-success btn-lg"
+                target="_blank" download>Download</a>
         </div>
     </div>
 </body>
 <footer>
-    <div class="commander-pass-ad row justify-content-center">
-        <div class="commander-pass-ad-animate">
-            <img src="src/icon.png" width="34" height="34" class="mr-3" alt="icon">
-            <span class="commander-pass-text">Secured by CommanderPass</span>
+    <div class="container footer">
+        <div class="row">
+            <div class="author col-md-6 text-center text-md-left">
+                Designed by <a href="https://fang2hou.com" class="author-name">Zhou Fang</a>.
+            </div>
+            <div class="ad col-md-6 text-center text-md-right">
+                <div class="animate">
+                    <span class="letter">Secured by CommanderPass</span>
+                    <span class="line"></span>
+                </div>
+                <img class="icon" src="src/icon.png" width="34" height="34" alt="icon">
+            </div>
         </div>
     </div>
+
 
     <script src="src/app.js"></script>
 
