@@ -38,9 +38,7 @@ class ViewController: NSViewController, ORSSerialPortDelegate {
     @IBOutlet weak var serialPortPicker: NSPopUpButton!
     @IBOutlet weak var statusInfoLabel: NSTextField!
     @IBOutlet weak var usernameLabel: NSTextField!
-    
     @IBOutlet weak var startButton: NSButton!
-    @IBOutlet weak var debugInfo: NSTextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -150,9 +148,6 @@ class ViewController: NSViewController, ORSSerialPortDelegate {
     }
     
     func filterData(with data: String) {
-        
-        debugInfo.stringValue += "\(data)\n"
-        
         
         switch data {
         case "ASenderReady":

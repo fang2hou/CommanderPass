@@ -102,12 +102,15 @@ void setup(){
 
 void loop() {
   if (isAuthFailed) {
-    
+    detectRetryButtonTouch();
   } else if (isInputMode) {
-    detectTouch();
+    detectNumberTouch();
     if (passwordString.length() >= 4) {
       XBee.print("A#pass#" + passwordString + "\n");
       isInputMode = false;
+      tft.fillScreen(WHITE);
+      renderMessage("Sending...", RED);
+      renderTitle();
     }
   } else if (XBee.available()) {
     bufferString = XBee.readStringUntil('\n');
@@ -126,13 +129,19 @@ void handleData() {
       renderTitle();
     } else if (bufferString == "APassGot") {
         tft.fillScreen(WHITE);
-        renderMessage("Sending...", BLACK);
+        renderMessage("Sending...", BLUE);
+        passwordString = "";
         renderTitle();
     } else if (bufferString == "AAuthSuccess") {
         tft.fillScreen(WHITE);
         renderMessage(" Success!", BLUE);
         renderTitle();
     } else if (bufferString == "AAuthFailed") {
+        // Flash
+        tft.fillScreen(RED);
+        delay(200);
+
+        // Display message & Show retry button
         tft.fillScreen(WHITE);
         isAuthFailed = true;
         renderMessage("  Wrong!", RED);
@@ -141,8 +150,40 @@ void handleData() {
     }
   }
 }
-  
-void detectTouch() {
+
+void detectRetryButtonTouch() {
+  digitalWrite(13, HIGH);
+  TSPoint p = ts.getPoint();
+  digitalWrite(13, LOW);
+
+  // if sharing pins, you'll need to fix the directions of the touchscreen pins
+  // pinMode(XP, OUTPUT);
+  pinMode(XM, OUTPUT);
+  pinMode(YP, OUTPUT);
+  // pinMode(YM, OUTPUT);
+
+  // we have some minimum pressure we consider 'valid'
+  // pressure of 0 means no pressing!
+
+  if (p.z > MINPRESSURE && p.z < MAXPRESSURE) {
+    // scale from 0->1023 to tft.width
+    p.x = map(p.x, TS_MINX, TS_MAXX, tft.width(), 0);
+    p.y = map(p.y, TS_MINY, TS_MAXY, tft.height(), 0);
+
+    // Retry
+    if (p.x > 40 && p.x < 200) {
+      if (p.y > 120 && p.y < 160) {
+        isAuthFailed = false;
+        isInputMode = true;
+        tft.fillScreen(WHITE);
+        renderButtonsInRandom();
+        renderTitle();
+      }
+    }
+  }
+}
+
+void detectNumberTouch() {
   digitalWrite(13, HIGH);
   TSPoint p = ts.getPoint();
   digitalWrite(13, LOW);
@@ -177,23 +218,52 @@ void detectTouch() {
   
     if (row < 3 && col < 3) {
       int index = 3 * row + col;
-      saveInputedNumber(positions[index].number);
+      saveInputedNumber(positions[index]);
     }
   }       
 }
 
-void saveInputedNumber(int number) {
+void saveInputedNumber(position pos) {
     unsigned long currentTouchedTime = micros();
     if (currentTouchedTime - lastTouchedTime > 500000) {
-      passwordString += String(number);
+      passwordString += String(pos.number);
       lastTouchedTime = currentTouchedTime;
+        animateButton(pos);
     }
 }
 
+void animateButton(position pos) {
+  renderButton(pos, 0x528A, 0xCE59);
+  delay(30);
+  renderButton(pos, 0x9492, 0x9492);
+  delay(30);
+  renderButton(pos, 0xCE59, 0x528A);
+  delay(45);
+  renderButton(pos, WHITE, BLACK);
+  delay(30);
+  renderButton(pos, 0xCE59, 0x528A);
+  delay(30);
+  renderButton(pos, 0x9492, 0x9492);
+  delay(30);
+  renderButton(pos, 0x528A, 0xCE59);
+  delay(30);
+  renderButton(pos, BLACK, WHITE);
+}
+
 void renderRetryButton() {
-  tft.fillRect(40, 120, 160, 40, BLACK);
-  tft.setCursor(40, 120);
-  tft.setTextSize(5);
+  // Set radius
+  tft.fillCircle(53,  133, 13, BLACK);
+  tft.fillCircle(53,  146, 13, BLACK);
+  tft.fillCircle(187, 133, 13, BLACK);
+  tft.fillCircle(187, 146, 13, BLACK);
+
+  // Fill rectangle
+  tft.fillRect(53, 120, 134, 40, BLACK);
+  tft.fillRect(40, 133, 161, 13, BLACK);
+
+  // Text
+  tft.setCursor(77, 130);
+  tft.setTextSize(3);
   tft.setTextColor(WHITE);
   tft.println("Retry");
 }
@@ -205,25 +275,25 @@ void renderButtonsInRandom() {
   }
   
   for (int i = 0; i < 9; ++i) {
+    // Set number with random index.
     int randomIndex = rand() % 9;
-    
     while(positions[randomIndex].number != 0) {
       randomIndex = rand() % 9;
     }
-    
     positions[randomIndex].number = i + 1;
 
-    renderButton(positions[randomIndex]); 
+    // Render
+    renderButton(positions[randomIndex], BLACK, WHITE); 
   }
-  
 }
 
-void renderButton(position pos) {
+void renderButton(position pos,
+                  const uint16_t color,
+                  const uint16_t textColor) {
   int centerXValue = pos.x;
   int centerYValue = pos.y;
   int number       = pos.number;
-  
-  const uint16_t color = BLACK;
+
   int h = BUTTONSIZE / 6;
 
   // Set radius
@@ -237,7 +307,7 @@ void renderButton(position pos) {
   tft.fillRect(centerXValue-h, centerYValue-3*h, 2*h, BUTTONSIZE, color);
 
   // Button number
-  tft.setTextColor(WHITE);
+  tft.setTextColor(textColor);
   tft.setTextSize(5);
   tft.setCursor(centerXValue-h, centerYValue-1.5*h);
   tft.println(number);

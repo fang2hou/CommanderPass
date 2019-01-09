@@ -73,7 +73,7 @@ func (a *aelAPI) auth(w http.ResponseWriter, r *http.Request) {
 
 	username := a.usernameMap[sessionUUID]
 
-	if model == "AEL0106" {
+	if model == "CP001" {
 		if enteredPass == a.secretKey[username] {
 			fmt.Fprint(w, "success")
 			a.status[sessionUUID] = true

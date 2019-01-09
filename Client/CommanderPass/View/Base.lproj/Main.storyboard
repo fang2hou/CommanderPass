@@ -707,7 +707,7 @@
             <objects>
                 <viewController title="CommanderPass" id="XfG-lQ-9wD" customClass="ViewController" customModule="CommanderPass" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" wantsLayer="YES" id="m2S-Jp-Qdl">
-                        <rect key="frame" x="0.0" y="0.0" width="617" height="589"/>
+                        <rect key="frame" x="0.0" y="0.0" width="440" height="157"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="sA2-tR-CH1">
@@ -720,10 +720,77 @@
                                     <action selector="quitButtonPressed:" target="XfG-lQ-9wD" id="iIW-if-SXY"/>
                                 </connections>
                             </button>
-                            <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Zhf-0K-315">
-                                <rect key="frame" x="89" y="547" width="255" height="25"/>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="cAm-bq-oZ5">
+                                <rect key="frame" x="18" y="120" width="67" height="17"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" title="Serial Port" id="Rv0-gQ-Mw2">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Jhm-za-5dg">
+                                <rect key="frame" x="268" y="13" width="92" height="32"/>
+                                <buttonCell key="cell" type="push" title="Connect" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="gvf-Ck-y20">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="connectButtonPressed:" target="XfG-lQ-9wD" id="AcP-NO-Ylk"/>
+                                </connections>
+                            </button>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="YSv-fw-6cF">
+                                <rect key="frame" x="339" y="111" width="87" height="32"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="250" id="le6-Qa-ycK"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="75" id="JKN-JC-Atn"/>
+                                </constraints>
+                                <buttonCell key="cell" type="push" title="Refresh" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Rbq-97-2bR">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="refreshButtonPressed:" target="XfG-lQ-9wD" id="Wxo-ZG-srS"/>
+                                </connections>
+                            </button>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="SN1-9T-VHo">
+                                <rect key="frame" x="18" y="93" width="404" height="17"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" title="Waiting..." id="mly-zK-xcq">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="QaO-kh-Le8">
+                                <rect key="frame" x="140" y="13" width="132" height="32"/>
+                                <buttonCell key="cell" type="push" title="Detect Arduino" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="VZw-ni-gbm">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="detectArduinoButtonPressed:" target="XfG-lQ-9wD" id="36o-k8-ZEf"/>
+                                </connections>
+                            </button>
+                            <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="5Pu-p3-AHf">
+                                <rect key="frame" x="20" y="56" width="400" height="29"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" alignment="center" placeholderString="Username" drawsBackground="YES" id="61I-jL-BEf">
+                                    <font key="font" metaFont="system" size="20"/>
+                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ehg-rb-QKs">
+                                <rect key="frame" x="356" y="13" width="70" height="32"/>
+                                <buttonCell key="cell" type="push" title="Start" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="LlI-dp-RQC">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="startButtonPressed:" target="XfG-lQ-9wD" id="QGb-yn-hdu"/>
+                                </connections>
+                            </button>
+                            <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Zhf-0K-315">
+                                <rect key="frame" x="93" y="115" width="247" height="25"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="242" id="58d-zt-kRN"/>
                                 </constraints>
                                 <popUpButtonCell key="cell" type="push" title="Item 1" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="WcN-q5-z2L" id="Xdf-dt-asQ">
                                     <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
@@ -737,123 +804,33 @@
                                     </menu>
                                 </popUpButtonCell>
                             </popUpButton>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="cAm-bq-oZ5">
-                                <rect key="frame" x="18" y="552" width="67" height="17"/>
-                                <textFieldCell key="cell" lineBreakMode="clipping" title="Serial Port" id="Rv0-gQ-Mw2">
-                                    <font key="font" metaFont="system"/>
-                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                            </textField>
-                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Jhm-za-5dg">
-                                <rect key="frame" x="471" y="514" width="132" height="32"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="120" id="YNd-at-gVG"/>
-                                </constraints>
-                                <buttonCell key="cell" type="push" title="Connect" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="gvf-Ck-y20">
-                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="system"/>
-                                </buttonCell>
-                                <connections>
-                                    <action selector="connectButtonPressed:" target="XfG-lQ-9wD" id="AcP-NO-Ylk"/>
-                                </connections>
-                            </button>
-                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="YSv-fw-6cF">
-                                <rect key="frame" x="471" y="543" width="132" height="32"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="120" id="8y9-cX-3HD"/>
-                                </constraints>
-                                <buttonCell key="cell" type="push" title="Refresh" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Rbq-97-2bR">
-                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="system"/>
-                                </buttonCell>
-                                <connections>
-                                    <action selector="refreshButtonPressed:" target="XfG-lQ-9wD" id="Wxo-ZG-srS"/>
-                                </connections>
-                            </button>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="SN1-9T-VHo">
-                                <rect key="frame" x="18" y="525" width="61" height="17"/>
-                                <textFieldCell key="cell" lineBreakMode="clipping" title="Waiting..." id="mly-zK-xcq">
-                                    <font key="font" metaFont="system"/>
-                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                            </textField>
-                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="QaO-kh-Le8">
-                                <rect key="frame" x="343" y="543" width="132" height="32"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" priority="250" constant="120" id="o2Y-QN-pDK"/>
-                                </constraints>
-                                <buttonCell key="cell" type="push" title="Detect Arduino" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="VZw-ni-gbm">
-                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="system"/>
-                                </buttonCell>
-                                <connections>
-                                    <action selector="detectArduinoButtonPressed:" target="XfG-lQ-9wD" id="36o-k8-ZEf"/>
-                                </connections>
-                            </button>
-                            <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="5Pu-p3-AHf">
-                                <rect key="frame" x="109" y="106" width="400" height="65"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="400" id="fy9-aR-4a9"/>
-                                </constraints>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" placeholderString="User ID" drawsBackground="YES" id="61I-jL-BEf">
-                                    <font key="font" metaFont="system" size="50"/>
-                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                            </textField>
-                            <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="07U-ce-n4H">
-                                <rect key="frame" x="18" y="201" width="581" height="300"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="300" id="boG-Sx-cys"/>
-                                </constraints>
-                                <textFieldCell key="cell" selectable="YES" editable="YES" id="ONC-PY-MgC">
-                                    <font key="font" metaFont="system"/>
-                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                            </textField>
-                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ehg-rb-QKs">
-                                <rect key="frame" x="80" y="13" width="70" height="32"/>
-                                <buttonCell key="cell" type="push" title="Start" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="LlI-dp-RQC">
-                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="system"/>
-                                </buttonCell>
-                                <connections>
-                                    <action selector="startButtonPressed:" target="XfG-lQ-9wD" id="QGb-yn-hdu"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <constraints>
-                            <constraint firstAttribute="bottom" secondItem="sA2-tR-CH1" secondAttribute="bottom" constant="20" id="6sV-9T-Ghe"/>
-                            <constraint firstItem="07U-ce-n4H" firstAttribute="top" secondItem="Jhm-za-5dg" secondAttribute="bottom" constant="20" id="FeS-cQ-WbI"/>
-                            <constraint firstItem="Jhm-za-5dg" firstAttribute="top" secondItem="YSv-fw-6cF" secondAttribute="bottom" constant="8" id="HEQ-tB-5Xg"/>
-                            <constraint firstItem="07U-ce-n4H" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="20" id="KhU-Rn-qIj"/>
-                            <constraint firstItem="ehg-rb-QKs" firstAttribute="leading" secondItem="sA2-tR-CH1" secondAttribute="trailing" constant="12" id="NK0-K1-S9i"/>
-                            <constraint firstItem="YSv-fw-6cF" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" constant="18" id="OUR-dW-XNF"/>
-                            <constraint firstAttribute="trailing" secondItem="YSv-fw-6cF" secondAttribute="trailing" constant="20" id="PJU-Sf-tnl"/>
-                            <constraint firstItem="cAm-bq-oZ5" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="20" id="Rdj-2Y-hmi"/>
-                            <constraint firstAttribute="bottom" secondItem="ehg-rb-QKs" secondAttribute="bottom" constant="20" id="S4K-ob-33a"/>
-                            <constraint firstItem="Jhm-za-5dg" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="SN1-9T-VHo" secondAttribute="trailing" constant="8" id="Sy9-TJ-pkR"/>
-                            <constraint firstItem="SN1-9T-VHo" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="20" id="TMF-dJ-bvB"/>
-                            <constraint firstAttribute="trailing" secondItem="ehg-rb-QKs" secondAttribute="trailing" constant="473" id="VIM-o7-Ual"/>
-                            <constraint firstItem="cAm-bq-oZ5" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" constant="20" id="VQm-jY-gcK"/>
-                            <constraint firstItem="YSv-fw-6cF" firstAttribute="leading" secondItem="QaO-kh-Le8" secondAttribute="trailing" constant="8" id="XVd-Oy-ESh"/>
-                            <constraint firstItem="Zhf-0K-315" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" constant="18" id="Zmt-5V-ZZm"/>
-                            <constraint firstItem="5Pu-p3-AHf" firstAttribute="top" secondItem="07U-ce-n4H" secondAttribute="bottom" constant="30" id="ZwD-rV-gsU"/>
-                            <constraint firstItem="5Pu-p3-AHf" firstAttribute="centerX" secondItem="m2S-Jp-Qdl" secondAttribute="centerX" id="aIA-Q0-To7"/>
-                            <constraint firstAttribute="trailing" secondItem="07U-ce-n4H" secondAttribute="trailing" constant="20" id="f7E-5x-DUm"/>
-                            <constraint firstItem="sA2-tR-CH1" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="20" id="hGx-bo-Pvu"/>
-                            <constraint firstItem="Zhf-0K-315" firstAttribute="leading" secondItem="cAm-bq-oZ5" secondAttribute="trailing" constant="8" id="qwr-0C-SYE"/>
-                            <constraint firstItem="SN1-9T-VHo" firstAttribute="top" secondItem="Zhf-0K-315" secondAttribute="bottom" constant="8" id="rAW-8h-rGy"/>
-                            <constraint firstItem="QaO-kh-Le8" firstAttribute="leading" secondItem="Zhf-0K-315" secondAttribute="trailing" constant="8" id="wpu-Do-7gu"/>
-                            <constraint firstAttribute="trailing" secondItem="Jhm-za-5dg" secondAttribute="trailing" constant="20" id="xzF-RV-A8h"/>
-                            <constraint firstItem="QaO-kh-Le8" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" constant="18" id="yOv-bl-JAS"/>
+                            <constraint firstItem="SN1-9T-VHo" firstAttribute="top" secondItem="Zhf-0K-315" secondAttribute="bottom" constant="8" id="25h-3B-iGK"/>
+                            <constraint firstItem="cAm-bq-oZ5" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" constant="20" id="5d6-jm-bZ6"/>
+                            <constraint firstItem="Jhm-za-5dg" firstAttribute="leading" secondItem="QaO-kh-Le8" secondAttribute="trailing" constant="8" id="6re-O0-mcc"/>
+                            <constraint firstAttribute="trailing" secondItem="YSv-fw-6cF" secondAttribute="trailing" constant="20" id="8U6-Dh-bJz"/>
+                            <constraint firstItem="YSv-fw-6cF" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" constant="18" id="9U2-Oe-yg7"/>
+                            <constraint firstItem="QaO-kh-Le8" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="sA2-tR-CH1" secondAttribute="trailing" constant="72" id="9ot-tR-Pfw"/>
+                            <constraint firstAttribute="bottom" secondItem="QaO-kh-Le8" secondAttribute="bottom" constant="20" id="Enu-xM-DwZ"/>
+                            <constraint firstItem="5Pu-p3-AHf" firstAttribute="top" secondItem="SN1-9T-VHo" secondAttribute="bottom" constant="8" id="GhR-vy-EU7"/>
+                            <constraint firstItem="sA2-tR-CH1" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="20" id="NSu-iR-JXc"/>
+                            <constraint firstItem="cAm-bq-oZ5" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="20" id="PpZ-Je-sAw"/>
+                            <constraint firstItem="ehg-rb-QKs" firstAttribute="leading" secondItem="Jhm-za-5dg" secondAttribute="trailing" constant="8" id="R4D-4Y-Rbz"/>
+                            <constraint firstItem="Zhf-0K-315" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" constant="18" id="TND-5j-2Al"/>
+                            <constraint firstItem="YSv-fw-6cF" firstAttribute="leading" secondItem="Zhf-0K-315" secondAttribute="trailing" constant="8" id="WP0-Vv-bCk"/>
+                            <constraint firstAttribute="bottom" secondItem="Jhm-za-5dg" secondAttribute="bottom" constant="20" id="aV1-fR-Pi4"/>
+                            <constraint firstAttribute="trailing" secondItem="ehg-rb-QKs" secondAttribute="trailing" constant="20" id="dXk-iQ-IK3"/>
+                            <constraint firstItem="5Pu-p3-AHf" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="20" id="dYT-1d-o9A"/>
+                            <constraint firstAttribute="bottom" secondItem="ehg-rb-QKs" secondAttribute="bottom" constant="20" id="iH5-ff-6vv"/>
+                            <constraint firstAttribute="bottom" secondItem="sA2-tR-CH1" secondAttribute="bottom" constant="20" id="lqo-S6-Jvl"/>
+                            <constraint firstItem="SN1-9T-VHo" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="20" id="mdC-0h-rIa"/>
+                            <constraint firstAttribute="trailing" secondItem="SN1-9T-VHo" secondAttribute="trailing" constant="20" id="qdU-6j-PP5"/>
+                            <constraint firstAttribute="trailing" secondItem="5Pu-p3-AHf" secondAttribute="trailing" constant="20" id="qlb-rv-cYg"/>
+                            <constraint firstItem="Zhf-0K-315" firstAttribute="leading" secondItem="cAm-bq-oZ5" secondAttribute="trailing" constant="12" id="yMe-kN-C6A"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="debugInfo" destination="07U-ce-n4H" id="28P-6h-0DH"/>
                         <outlet property="serialPortPicker" destination="Zhf-0K-315" id="v6X-gp-oo8"/>
                         <outlet property="startButton" destination="ehg-rb-QKs" id="eL3-VW-xgB"/>
                         <outlet property="statusInfoLabel" destination="SN1-9T-VHo" id="9rf-h5-BS4"/>
@@ -862,7 +839,7 @@
                 </viewController>
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="41.5" y="847.5"/>
+            <point key="canvasLocation" x="74" y="610.5"/>
         </scene>
     </scenes>
 </document>
