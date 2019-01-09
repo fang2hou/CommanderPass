@@ -1,0 +1,16 @@
+body {
+    padding: 50px;
+    margin-bottom: 70px;
+}
+
+.commanderPassDesc {
+    margin-top: 5px;
+}
+
+.commanderPassAd {
+    padding-right: 2%;
+    float: right;
+}
+.fileCodeInput {
+    padding-left: 0px;
+}

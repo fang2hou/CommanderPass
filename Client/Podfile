@@ -5,4 +5,5 @@ target 'CommanderPass' do
 
   pod 'ORSSerialPort'
   pod 'Alamofire'
+  pod 'SwiftyJSON'
 end
