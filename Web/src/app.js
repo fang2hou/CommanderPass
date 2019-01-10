@@ -26,7 +26,7 @@ var RCMain = new Vue({
     searchButton: {
       isShown: true,
       status: 'btn-primary',
-      text: 'Search',
+      text: 'Go',
     },
     downloadButton: {
       path: '',
