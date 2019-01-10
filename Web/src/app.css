@@ -39,6 +39,11 @@ body {
     text-align: center;
 }
 
+.logoimg {
+    max-width: 100%;
+    height: auto;
+}
+
 .btn-download {
     margin-top: 20px;
     padding: 10px 20px 10px 20px;
@@ -51,7 +56,7 @@ body {
 .footer {
     max-width: unset;
     padding: calc(2vw);
-    padding-bottom: 0px;
+    padding-bottom: 5px;
 }
 
 .author-name {
