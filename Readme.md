@@ -2,7 +2,7 @@
 CommanderPass is an authenticator to verify user who has permission to access the secret files.  
 The project is created for building an authentication system with more secure.  
 
-[Web App Example](http://fang2hou.github.io/CommanderPass)
+[Web App Example](http://fang2hou.com/CommanderPass) (Please use HTTP rather then HTTPS to visit.)
 
 # How to use
 ## The things you need
